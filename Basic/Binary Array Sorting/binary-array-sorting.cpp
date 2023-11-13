@@ -15,6 +15,7 @@ class Solution{
     {
        //Your code here
        int s=0,e=n-1;
+       // in searching s<=e while in swapping s<e will also do
        while(s<e){
            if(arr[s]==0)
            s++;
