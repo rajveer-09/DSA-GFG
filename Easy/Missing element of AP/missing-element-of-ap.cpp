@@ -12,7 +12,9 @@ public:
     int findMissing(int arr[], int n) {
         // code here
         int cd=(arr[n-1]-arr[0])/n;
-        for(int i=0;i<n;i++){
+        //last one will not be missed as when last one would be missed nothing is missed before
+        //similarly 1st one can also not be missed 
+        for(int i=0;i<n-1;i++){
             
             if(arr[i+1]!=arr[i]+cd){
                 return arr[i]+cd;
