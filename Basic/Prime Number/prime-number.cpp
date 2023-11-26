@@ -5,26 +5,16 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 public:
-    int isPrime(int N){
+    int isPrime(int n){
         // code here
-        if (N <= 1) {
-        return false; // 0 and 1 are not prime numbers
-    }
-    if (N == 2 || N == 3) {
-        return true; // 2 and 3 are prime numbers
-    }
-    if (N % 2 == 0 || N % 3 == 0) {
-        return false; // multiples of 2 and 3 are not prime
-    }
-
-    // Check for factors starting from 5 up to the square root of n
-    for (int i = 5; i * i <= N; i += 6) {
-        if (N % i == 0 || N % (i + 2) == 0) {
-            return false; // n is divisible by i or i+2, so it's not a prime number
+        if(n<=1)
+        return 0;
+        
+        for(int i=2;i<=sqrt(n);i++){
+            if(n%i==0)
+            return 0;
         }
-    }
-
-    return true; 
+        return 1;
     }
 };
 
