@@ -6,20 +6,25 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    int minCandy(int n, vector<int> &ratings) {
-        // code hereint n=ratings.size();
-        vector<int>candyL(n,1), candyR(n,1);
-        for(int i=1;i<n;i++)
-            if(ratings[i]>ratings[i-1]) 
-                candyL[i]=candyL[i-1]+1;
-        for(int i=n-2;i>=0;i--)
-            if(ratings[i]>ratings[i+1]) 
-                candyR[i]=candyR[i+1]+1;
-        int candies=0;
-        for (int i=0;i<n;i++)
-            candies+=max(candyL[i],candyR[i]);
-        return candies;
+    int minCandy(int n, vector<int> &arr) {
+        // code here
+        vector<int>ans(n,1);
+     for(int i=1;i<n;i++)
+     {
+         if(arr[i]>arr[i-1])
+         ans[i]=ans[i-1]+1;
+     }
+     for(int i=n-2;i>=0;i--)
+     {
+         if(arr[i]>arr[i+1]&&ans[i]<=ans[i+1])
+         ans[i]=ans[i+1]+1;
+     }
+     int sum=0;
+     for(int i=0;i<n;i++)
+     sum+=ans[i];
+     return sum;
     }
+    
 };
 
 
