@@ -8,23 +8,25 @@ class Solution{
     void segregateElements(int arr[],int n)
     {
         // Your code goes here
-        vector <int> temp;
-        //store +ve integer in temp array
+        vector<int>temp;
+       
+        
         for(int i=0;i<n;i++){
             if(arr[i]>0)
             temp.push_back(arr[i]);
         }
-        //store -ve integer in temp array
+        
         for(int i=0;i<n;i++){
-            if(arr[i]<0){
-                temp.push_back(arr[i]);
-            }
+            if(arr[i]<0)
+            temp.push_back(arr[i]);
         }
         
-        //replace temp elements with arr
+        
+        
         for(int i=0;i<n;i++){
             arr[i]=temp[i];
         }
+        
         
         
     }
