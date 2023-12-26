@@ -22,27 +22,31 @@ int main() {
 }
 // } Driver Code Ends
 
-long long int getmin(long long int arr[], int n) {
-    long long int min = arr[0];
-    for (int i = 1; i < n; i++) {
-        if (arr[i] < min)
-            min = arr[i];
+long long get_max(long long arr[], int n){
+    
+    long long maxi=arr[0];
+    
+    for(int i=0;i<n;i++){
+        if(arr[i]>maxi)
+        maxi=arr[i];
     }
-    return min;
+    return maxi;
 }
-
-long long int getmax(long long int arr[], int n) {
-    long long int max = arr[0];
-    for (int i = 1; i < n; i++) {
-        if (arr[i] > max)
-            max = arr[i];
+long long get_mini(long long arr[], int n){
+    
+    long long mini=arr[0];
+    
+    for(int i=0;i<n;i++){
+        if(arr[i]<mini)
+        mini=arr[i];
     }
-    return max;
+    return mini;
 }
-
 pair<long long, long long> getMinMax(long long a[], int n) {
-    long long min = getmin(a, n);
-    long long max = getmax(a, n);
-
-    return make_pair(min, max);
+    
+    long long mx=get_max(a,n);
+    long long mn=get_mini(a,n);
+    
+    return make_pair(mn,mx);
+    
 }
