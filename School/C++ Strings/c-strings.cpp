@@ -24,12 +24,6 @@ int main()
 string conCat(string s1 , string s2)
 {
     // code here.
-    string s3="";
-    for(int i=0;i<s1.length();i++){
-        s3.push_back(s1[i]);
-    }
-    for(int i=0;i<s2.length();i++){
-        s3.push_back(s2[i]);
-    }
-    return s3;
+    
+    return s1+s2;
 }
