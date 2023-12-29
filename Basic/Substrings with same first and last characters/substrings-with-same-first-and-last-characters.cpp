@@ -11,16 +11,11 @@ public:
 
 	int countSubstringWithEqualEnds(string s)
 	{
-	    // Your code goes here
-	      unordered_map<int,int> mp;
-       int count=0;
-       for(int i=0;i<s.size();i++)
-       {
-           if(mp.find(s[i])!=mp.end())
-           count+=mp[s[i]];
-        mp[s[i]]++;
-       }
-       return s.size()+count;
+	   int h[ 26 ]{}, x{};
+    for ( const char c : s ) ++h[ c - 'a' ];
+    for ( int i{}; i < 26; ++i )
+        x += h[ i ] * ++h[ i ] / 2;
+    return x;
 	}
 };
 
