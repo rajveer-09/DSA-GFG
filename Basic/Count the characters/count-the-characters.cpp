@@ -11,7 +11,7 @@ class Solution
         {
             //code here.
     int h[26] {0}, count = 0;
-    h[S[0]-97]++;
+    h[S[0]-'a']++;
     for(int i=1; i<S.length(); i++)
         if(S[i-1] != S[i])
             h[S[i]-97]++;
