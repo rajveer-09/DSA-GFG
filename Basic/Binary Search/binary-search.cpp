@@ -11,23 +11,26 @@ using namespace std;
 class Solution {
   public:
     int binarysearch(int arr[], int n, int k) {
-        
         // code here
-        
-        int l=0,h=n-1;
-        while(l<=h){
-            int m=l+(h-l)/2;
-            
-            if(k==arr[m])
-            return m;
-            
-            if(k<arr[m])
-            h=m-1;
-        
-            else
-            l=m+1;
-        }
-        return -1;
+      int high=n-1;
+      int low=0;
+      int mid;
+      while(low<=high)
+      {
+          mid=low+(high-low)/2;
+          if(arr[mid]==k)
+          {
+              return mid;
+          }
+          if(arr[mid]<k)
+          {
+              low=mid+1;
+          }
+          else{
+              high=mid-1;
+          }
+      }
+      return -1;
     }
 };
 
