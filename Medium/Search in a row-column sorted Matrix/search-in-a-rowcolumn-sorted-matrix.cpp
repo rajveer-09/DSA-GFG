@@ -12,11 +12,12 @@ class Solution
     bool search(vector<vector<int> > matrix, int n, int m, int x) 
     {
         // code here 
-         int i=0,j=m-1;
-        while(i<n && j>=0){
-            if(matrix[i][j]==x) return 1;
-            else if(matrix[i][j]>x) j--;
-            else i++;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(matrix[i][j]==x){
+                    return 1;
+                }
+            }
         }
         return 0;
     }
