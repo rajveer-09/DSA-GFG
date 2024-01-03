@@ -11,28 +11,19 @@ public:
 	// largest elements
 	int print2largest(int arr[], int n) {
 	    // code here
-	       int largest = INT_MIN;
-    int secLargest = INT_MIN;
+	int firstMax = INT_MIN;
+    int secondMax = INT_MIN;
 
-    // find largest
-    for(int i = 0; i < n; i++){
-       largest = max(largest,arr[i]);
-    }
-
-
-   // find secondlargest 
-    for(int i = 0; i < n; i++){
-        if(arr[i] < largest && arr[i] > secLargest){
-            secLargest = arr[i];
+    for (int i = 0; i < n; i++) {
+        if (arr[i] > firstMax) {
+            secondMax = firstMax;
+            firstMax = arr[i];
+        } else if (arr[i] > secondMax && arr[i] != firstMax) {
+            secondMax = arr[i];
         }
     }
 
-// edge case if all elements are identical
-    if(secLargest == INT_MIN){
-        secLargest = -1;
-    }
-    
-    return secLargest;
+    return (secondMax == INT_MIN) ? -1 : secondMax;
 	}
 };
 
