@@ -9,20 +9,17 @@ class Solution {
   public:
     int nthFibonacci(int n){
         // code here
-        int n1=1,n2=1,ans=-1,n3;
-        if(n==2 || n==1)
-        {
-            return 1;
+        const int mod=1000000007;
+        if(n<=1) return n;
+        
+        int a=0;
+        int b=1;
+        for(int i=0;i<n;i++){
+            int temp=b%mod;
+            b=(a%mod+b%mod)%mod;
+            a=temp%mod;
         }
-    for(int i=2;i<n;i++)
-    {
-        n3=(n1+n2)%1000000007;
-        ans=n3;
-        n1=n2;
-        n2=n3;
-      
-    }
-    return ans;
+        return a;
     }
 };
 
