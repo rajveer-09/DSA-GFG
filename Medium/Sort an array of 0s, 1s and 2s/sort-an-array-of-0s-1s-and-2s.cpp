@@ -11,7 +11,25 @@ class Solution
     void sort012(int arr[], int n)
     {
         // code here 
-        sort(arr,arr+n);
+        int st=0;
+        int ct=0;
+        int ed=n-1;
+        
+        for(int i=0;i<n;i++){
+            if(arr[ct]==0){
+                swap(arr[st],arr[ct]);
+                st++;
+                ct++;
+                
+            }
+            else if(arr[ct]==1)
+            ct++;
+            
+            else{
+                swap(arr[ct],arr[ed]);
+                ed--;
+            }
+        }
     }
     
 };
