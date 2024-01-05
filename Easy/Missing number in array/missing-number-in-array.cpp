@@ -14,13 +14,15 @@ class Solution{
   public:
     int missingNumber(vector<int>& array, int n) {
         // Your code goes here
-        sort(array.begin(), array.end());
-        int s= n*(n+1)/2;
+        int total=n*(n+1)/2;
         int sum=0;
-        for(int i=0;i<n-1;i++){
-            sum+=array[i];
+        for(int i=0; i<n-1;i++)
+        {
+            sum=sum+array[i];
         }
-        return s-sum;
+         total=total-sum;
+        return total;
+        
     }
 };
 
