@@ -9,7 +9,7 @@ class Solution
         vector <int> rotate (int n, int d)
         {
             //code here.
-            d = d%16;
+               d = d%16;
         
         int ln=0,rn=0;
         for(int i=0;i<16;i++){
