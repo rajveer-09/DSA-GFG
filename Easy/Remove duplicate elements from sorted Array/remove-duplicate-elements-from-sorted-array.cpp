@@ -10,18 +10,23 @@ using namespace std;
 
 class Solution{
 public:
-    int remove_duplicate(int arr[],int n){
+    int remove_duplicate(int A[],int n){
         // code here
-        int x=0;
-        for( int i=0;i<n-1;i++)
+        
+        int j=0;
+        for(int i=0;i<n-1;i++)
         {
-            if(arr[i]!=arr[i+1])
+            if(A[i]==A[i+1])
+            continue;
+            else
             {
-                arr[x++]=arr[i];
+                A[j]=A[i];
+                j++;
             }
+           
         }
-        arr[x++]=arr[n-1];
-        return x;
+        A[j]=A[n-1];
+        return j+1;
     }
 };
 
