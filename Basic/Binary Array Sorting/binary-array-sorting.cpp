@@ -14,18 +14,14 @@ class Solution{
     void binSort(int arr[], int n)
     {
        //Your code here
-       int s=0,e=n-1;
-       // in searching s<=e while in swapping s<e will also do
-       while(s<e){
-           if(arr[s]==0)
-           s++;
-           else if(arr[e]==1)
-           e--;
-           
-           if(arr[s]>arr[e])
-           swap(arr[s],arr[e]);
-       }
-       
+       int i = 0;   int j = n - 1;
+    while (i <= j) {
+        if(arr[i]==0){i++; }
+        else if(arr[j]==1){j--;}
+        else{
+            swap(arr[i], arr[j]);
+            i++;
+            j--;}}
     }
 };
 
