@@ -1,4 +1,4 @@
-<h2><a href="https://www.geeksforgeeks.org/problems/find-triplets-with-zero-sum/1?page=1&category=two-pointer-algorithm&sortBy=submissions">Find triplets with zero sum</a></h2><h3>Difficulty Level : Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given an array <strong>arr[]&nbsp;</strong>of&nbsp;<strong>n</strong> integers. Check whether it contains a triplet that sums up to zero.&nbsp;<br></span></p>
+<h2><a href="https://www.geeksforgeeks.org/problems/find-triplets-with-zero-sum/0">Find triplets with zero sum</a></h2><h3>Difficulty Level : Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given an array <strong>arr[]&nbsp;</strong>of&nbsp;<strong>n</strong> integers. Check whether it contains a triplet that sums up to zero.&nbsp;<br></span></p>
 <p><span style="font-size: 18px;"><strong>Note: </strong>Return 1, if there is at least one triplet following the condition else return 0.</span></p>
 <p><span style="font-size: 18px;"><strong>Example 1:</strong></span></p>
 <pre><span style="font-size: 18px;"><strong>Input</strong>: n = 5, arr[] = {0, -1, 2, -3, 1}
