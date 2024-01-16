@@ -11,19 +11,34 @@ public:
 	// largest elements
 	int print2largest(int arr[], int n) {
 	    // code here
-	int firstMax = INT_MIN;
-    int secondMax = INT_MIN;
+	    int i, first, second;
 
-    for (int i = 0; i < n; i++) {
-        if (arr[i] > firstMax) {
-            secondMax = firstMax;
-            firstMax = arr[i];
-        } else if (arr[i] > secondMax && arr[i] != firstMax) {
-            secondMax = arr[i];
-        }
-    }
+	    // There should be at least two elements
+	    if (n < 2) {
+	        return -1;
+	    }
 
-    return (secondMax == INT_MIN) ? -1 : secondMax;
+	    first = second = INT_MIN;
+	    for (i = 0; i < n; i++) {
+
+	        // If current element is greater
+	        // than first then update both
+	        // first and second
+	        if (arr[i] > first) {
+	            second = first;
+	            first = arr[i];
+	        }
+
+	        // If arr[i] is in between first
+	        // and second then update second
+	        else if (arr[i] > second && arr[i] != first) {
+	            second = arr[i];
+	        }
+	    }
+	    if (second == INT_MIN)
+	        return -1;
+	    else
+	        return second;
 	}
 };
 
