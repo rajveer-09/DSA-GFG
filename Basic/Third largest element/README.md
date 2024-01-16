@@ -1,4 +1,4 @@
-<h2><a href="https://practice.geeksforgeeks.org/problems/third-largest-element/1?utm_source=geeksforgeeks&utm_medium=ml_article_practice_tab&utm_campaign=article_practice_tab">Third largest element</a></h2><h3>Difficulty Level : Basic</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given an array of distinct elements. Find the third largest element in it. </span></p>
+<h2><a href="https://www.geeksforgeeks.org/problems/third-largest-element/1?page=1&category=Arrays&difficulty=Basic,Easy&sortBy=difficulty">Third largest element</a></h2><h3>Difficulty Level : Basic</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given an array of distinct elements. Find the third largest element in it. </span></p>
 
 <p><span style="font-size:18px">Suppose you have A[] = {1, 2, 3, 4, 5, 6, 7}, its output will be 5 because it&nbsp;is the 3 largest element in the array A.</span></p>
 
