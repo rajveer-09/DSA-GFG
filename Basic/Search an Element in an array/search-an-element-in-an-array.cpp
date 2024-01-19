@@ -13,14 +13,12 @@ class Solution{
     {
         
         // Your code here
-         for (int i = 0; i < N; i++)
-        {
-            if (arr[i] == X)
-            {
-                return i;  // Return the index of the element found, not the element itself
-            }
+        for(int i=0;i<N;i++){
+            if(arr[i]==X) return i;
         }
-        return -1;  // Return -1 if the element is not found in the array
+        
+        return -1;
+        
     }
 
 };
