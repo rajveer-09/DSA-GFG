@@ -31,10 +31,27 @@ int main()
 
 void rotate(int arr[], int n)
 {
-    int a=arr[n-1];
-    for(int i=n-1;i>0;i--){
-        arr[i]=arr[i-1];
+    if (n <= 1) {
+        return;  // No need to rotate if the array has 0 or 1 element
     }
-    arr[0]=a;
     
+    int steps =1;
+
+    // Adjust the number of steps to avoid unnecessary rotations
+    steps = steps % n;
+
+    // Reverse the last 'steps' elements
+    for (int i = 0; i < steps / 2; i++) {
+        swap(arr[n - steps + i], arr[n - 1 - i]);
+    }
+
+    // Reverse the first 'n - steps' elements
+    for (int i = 0; i < (n - steps) / 2; i++) {
+        swap(arr[i], arr[n - steps - 1 - i]);
+    }
+
+    // Reverse the entire array
+    for (int i = 0; i < n / 2; i++) {
+        swap(arr[i], arr[n - 1 - i]);
+    }
 }
