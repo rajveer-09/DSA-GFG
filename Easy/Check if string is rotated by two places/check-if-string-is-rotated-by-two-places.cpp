@@ -12,17 +12,27 @@ class Solution
     bool isRotated(string str1, string str2)
     {
         // Your code here
-         string s1=str1;
-        string s2=str1;
-        rotate(s1.begin(), s1.begin()+2, s1.end());
-    //clock wise
-    rotate(s2.begin(), s2.begin()+s2.size()-2, s2.end());
-   if(s1==str2)
-   return 1;
-   else if(s2==str2)
-   return 1;
-   else
-   return 0;
+        int n1=str1.size()-1;
+        int n2= str2.size()-1;
+        
+        if(n1!=n2) return false;
+        
+        if(str2[0]==str1[n1-1]&& str2[1]==str1[n1]){
+            for(int i=0;i<n1-2;i++){
+                if(str1[i]!=str2[i+2]) return false;
+            }
+            
+            return true;
+        }
+         if(str2[n2-1]==str1[0]&& str2[n2]==str1[1]){
+            for(int i=0;i<n1-2;i++){
+                if(str1[i+2]!=str2[i]) return false;
+            }
+            
+            return true;
+        }
+        
+        return false;
     }
 
 };
