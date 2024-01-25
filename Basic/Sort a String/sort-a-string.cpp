@@ -22,22 +22,18 @@ return 0;
 
 string sort(string s){
     //complete the function here
-    int a[26]{0};
-    int n=sizeof(a)/sizeof(int);
-    for (int i =0;i<s.size();i++)
-    {
-        a[char(s[i]-'a')]+=1;
+    int arr[26]={0};
+    string ans="";
+    
+    for(int i=0;i<s.size();i++){
+        arr[s[i]-'a']++;
     }
     
-    string s1="";
-    for (int i=0;i<n;i++)
-    {
-        int b=a[i];
-        while (b>0)
-        {
-            s1+=char('a'+i);
-            b--;
+    for(int i=0;i<26;i++){
+        while(arr[i]){
+            ans.push_back(i+'a');
+            arr[i]--;
         }
     }
-    return s1;
+    return ans;
 }
