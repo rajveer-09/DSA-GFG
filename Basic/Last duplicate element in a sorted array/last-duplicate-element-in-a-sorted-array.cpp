@@ -36,16 +36,12 @@ return 0;
 
 
 vector<int> dupLastIndex(int arr[], int n) {
-    // Complete the function
-     vector<int>v{-1};
+    // Complete the funcion
     for(int i=n-1;i>=0;i--){
         if(arr[i]==arr[i-1]){
-            v.pop_back();
-            v.push_back(i);
-            v.push_back(arr[i]);
-            return v;
+            return {i,arr[i]};
         }
     }
-    return v;
+    return {-1};
     
 }
