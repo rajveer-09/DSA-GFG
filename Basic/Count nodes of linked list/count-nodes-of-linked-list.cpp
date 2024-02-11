@@ -32,13 +32,12 @@ class Solution
     
         //Code here
         int cnt=0;
-        while(head!=NULL){
+        Node* temp=head;
+        while(temp!=NULL){
             cnt++;
-            head=head->next;
+            temp=temp->next;
         }
-        
         return cnt;
-    
     }
 };
     
