@@ -69,30 +69,19 @@ struct Node {
 int sumOfLastN_Nodes(struct Node* head, int n)
 {
       // Code here
-      int cP = 0;
-    Node* temp = head;
-
-    // Calculate the length of the linked list
-    while (temp != NULL) {
-        temp = temp->next;
-        cP++;
+    int sum=0;
+    int cnt=0;
+    Node* temp=head;
+    while(temp!=NULL){
+        cnt++;
+        temp=temp->next;
     }
-
-    // Reset temp to the head
-    temp = head;
-
-    int sum = 0;
-    int c = 0;
-
-    // Traverse the linked list and accumulate the sum of the last n nodes
-    while (temp != NULL) {
-        if (c >= cP - n) {
-            sum += temp->data;
-        }
-        temp = temp->next;
-        c++;
+    temp=head;
+    int cp=0;
+    while(temp!=nullptr){
+        if(cnt-cp<=n) sum+=temp->data;
+        cp++;
+        temp=temp->next;
     }
-
     return sum;
-      
 }
