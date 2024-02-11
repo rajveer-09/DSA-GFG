@@ -36,7 +36,7 @@ struct Node {
 
 class Solution{
   public:
-    //Function to insert a node at the beginning of the linked list.
+   //Function to insert a node at the beginning of the linked list.
     Node *insertAtBegining(Node *head, int x) {
        // Your code here
        Node* new_node = new Node(x);
