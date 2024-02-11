@@ -94,13 +94,10 @@ struct Node
 // Complete this function
 void deleteAlt(struct Node *head){
     // Code here
-    Node *temp = head->next;
-    Node *prev = head;
-    
-    while(temp!=NULL)
-    {
-        prev->next = temp->next;
-        prev = temp;
-        temp = prev->next;
+    Node* temp=head;
+    while(temp!=nullptr && temp->next !=nullptr){
+        free(temp->next);
+        temp->next=temp->next->next;
+        temp=temp->next;
     }
 }
