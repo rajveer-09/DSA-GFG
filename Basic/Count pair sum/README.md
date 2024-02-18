@@ -1,4 +1,4 @@
-<h2><a href="https://www.geeksforgeeks.org/problems/count-pair-sum5956/1?page=3&category=Arrays&sortBy=difficulty">Count pair sum</a></h2><h3>Difficulty Level : Basic</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given two sorted arrays(arr1[] and arr2[]) of size <strong>M</strong>&nbsp;and <strong>N</strong>&nbsp;of distinct elements. Given a value <strong>Sum</strong>. The problem is to count all pairs from both arrays whose sum is equal to <strong>Sum.</strong><br>
+<h2><a href="https://www.geeksforgeeks.org/problems/count-pair-sum5956/0">Count pair sum</a></h2><h3>Difficulty Level : Basic</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given two sorted arrays(arr1[] and arr2[]) of size <strong>M</strong>&nbsp;and <strong>N</strong>&nbsp;of distinct elements. Given a value <strong>Sum</strong>. The problem is to count all pairs from both arrays whose sum is equal to <strong>Sum.</strong><br>
 <strong>Note:</strong>&nbsp;The pair has an element from each array.</span></p>
 
 <p><br>
