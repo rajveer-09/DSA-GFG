@@ -8,26 +8,27 @@ using namespace std;
 class Solution
 {
     public:
-    void sort012(int arr[], int n)
+    void sort012(int a[], int n)
     {
         // code here 
-        int st=0;
-        int ct=0;
-        int ed=n-1;
-        
-        for(int i=0;i<n;i++){
-            if(arr[ct]==0){
-                swap(arr[st],arr[ct]);
-                st++;
-                ct++;
-                
+        int low=0;
+        int high = n-1;
+        int mid = 0;
+        while( mid <= high)
+        {
+            if(a[mid] == 0)
+            {
+                swap(a[mid],a[low]);
+                low++;
+                mid++;
             }
-            else if(arr[ct]==1)
-            ct++;
-            
+            else if(a[mid] == 1)
+            {
+                mid++;
+            }
             else{
-                swap(arr[ct],arr[ed]);
-                ed--;
+                swap(a[mid],a[high]);
+                high -- ;
             }
         }
     }
