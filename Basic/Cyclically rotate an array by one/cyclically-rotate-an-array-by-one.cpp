@@ -31,27 +31,9 @@ int main()
 
 void rotate(int arr[], int n)
 {
-    if (n <= 1) {
-        return;  // No need to rotate if the array has 0 or 1 element
-    }
-    
-    int steps =1;
-
-    // Adjust the number of steps to avoid unnecessary rotations
-    steps = steps % n;
-
-    // Reverse the last 'steps' elements
-    for (int i = 0; i < steps / 2; i++) {
-        swap(arr[n - steps + i], arr[n - 1 - i]);
-    }
-
-    // Reverse the first 'n - steps' elements
-    for (int i = 0; i < (n - steps) / 2; i++) {
-        swap(arr[i], arr[n - steps - 1 - i]);
-    }
-
-    // Reverse the entire array
-    for (int i = 0; i < n / 2; i++) {
-        swap(arr[i], arr[n - 1 - i]);
+    int i=0,j=n-1;
+    while(i!=j){
+        swap(arr[i],arr[j]);
+        i++;
     }
 }
