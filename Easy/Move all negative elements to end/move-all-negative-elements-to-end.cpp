@@ -8,16 +8,21 @@ class Solution{
     void segregateElements(int arr[],int n)
     {
         // Your code goes here
-        vector<int> v;
+        int temp[n];
+        int j=0;
         for(int i=0;i<n;i++){
-            if(arr[i]>0) v.push_back(arr[i]);
+            if(arr[i]>=0)
+                temp[j++]=arr[i];
         }
-         for(int i=0;i<n;i++){
-            if(arr[i]<0) v.push_back(arr[i]);
+        if(j==n || j==0){
+            return;
         }
         for(int i=0;i<n;i++){
-            arr[i]=v[i];
+            if(arr[i]<0){
+                temp[j++]=arr[i];
+            }
         }
+        memcpy(arr,temp,sizeof(temp));
     }
 };
 
