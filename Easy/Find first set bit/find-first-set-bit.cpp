@@ -16,9 +16,14 @@ class Solution
     unsigned int getFirstSetBit(int n)
     {
         // Your code here
-        if (n == 0)
-            return 0;
-        return __builtin_ctz(n) + 1;
+        if (n == 0) return 0;
+            
+        unsigned int pos = 1;
+        while ((n & 1) == 0) {
+            n >>= 1;
+            pos++;
+        }
+        return pos;
     }
 };
 
