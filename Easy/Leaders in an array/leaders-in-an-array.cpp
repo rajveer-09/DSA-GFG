@@ -14,12 +14,12 @@ class Solution{
     vector<int> leaders(int a[], int n){
         // Code here
         vector<int>ans;
-        int start=a[n-1];
-        ans.push_back(start);
+        int leader=a[n-1];
+        ans.push_back(leader);
         for(int i=n-2;i>=0;i--){
-            if(a[i]>=start){
+            if(a[i]>=leader){
                 ans.push_back(a[i]);
-                start=a[i];
+                leader=a[i];
             } 
         }
         reverse(ans.begin(),ans.end()); // TC = O(n)
