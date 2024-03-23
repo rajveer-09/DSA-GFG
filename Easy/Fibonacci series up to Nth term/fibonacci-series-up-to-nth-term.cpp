@@ -5,19 +5,19 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    const int MOD = 1e9 + 7;
-
+  #define mod 1000000007;
     vector<int> Series(int n) {
-        vector<int> fibonacci(n + 1);
-        fibonacci[0] = 0;
-        if (n > 0) {
-            fibonacci[1] = 1;
-            for (int i = 2; i <= n; ++i) {
-                fibonacci[i] = (fibonacci[i - 1] + fibonacci[i - 2]) % MOD;
-            }
+        // Code here
+        vector<int> fib(n+2);
+        
+        fib[0] = 0;
+        fib[1] = 1;
+        
+        for(int i = 2; i <= n; i++) {
+            fib[i] = (fib[i-1] + fib[i-2]) % mod;
         }
-    return fibonacci;
-}
+        return vector<int>(fib.begin(), fib.end() -1);
+    }
 };
 
 //{ Driver Code Starts.
