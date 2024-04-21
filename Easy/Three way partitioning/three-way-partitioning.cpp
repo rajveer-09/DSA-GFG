@@ -12,10 +12,10 @@ class Solution{
 public:
     //Function to partition the array around the range such 
     //that array is divided into three parts.
-    void threeWayPartition(vector<int>& array,int a, int b)
+    void threeWayPartition(vector<int>& v,int a, int b)
     {
         // code here 
-        sort(array.begin(),array.end());
+         sort(v.begin(),v.end());
     }
 };
 
