@@ -11,16 +11,13 @@ class Solution {
 public:
     int DiagonalSum(vector<vector<int> >& matrix) {
         // Code here
-        int r = matrix.size();
-        int ans = 0;
-        
-        for(int i=0;i<r;i++)
-        {
-            ans += matrix[i][i];
-            ans += matrix[i][r-i-1];
+        int sum=0;
+        int k= matrix[0].size()-1;
+        for(int i=0;i<matrix.size();i++){
+            sum+=matrix[i][i];
+            sum+=matrix[i][k--];
         }
-        
-        return ans;
+        return sum;
     }
 };
 
