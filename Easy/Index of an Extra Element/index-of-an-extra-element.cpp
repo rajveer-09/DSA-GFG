@@ -8,24 +8,14 @@ class Solution {
   public:
     int findExtra(int n, int arr1[], int arr2[]) {
         // add code here.
-        int low = 0;
-        int high = n - 2;  // arr2 length is n-1, so we search in range 0 to n-2
-
-        while (low <= high) {
-            int mid = (low + high) / 2;
-
-            if (arr1[mid] == arr2[mid]) {
-            // Extra element is in the right half
-                low = mid + 1;
-            } 
-            else {
-            // Extra element is in the left half or at mid
-                high = mid - 1;
-            }
+        for (int i = 0; i < n - 1; i++) {
+        // Compare elements at index i
+        if (arr1[i] != arr2[i]) {
+            return i;  // Mismatch found, return the index
         }
-
-        // When the loop ends, low is the index of the extra element
-        return low;
+    }
+    // If no mismatch found, the extra element is the last element in arr1
+    return n - 1;
     }
 };
 
