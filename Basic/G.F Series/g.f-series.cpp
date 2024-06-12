@@ -9,17 +9,16 @@ class Solution
 public:
     void gfSeries(int N)
     {
-        solve(N);
-        cout<<endl;
-    }
-    void solve(int N,long int n1 = 0,long int n2 = 1){
-        if(n1 == 0) cout<<n1<<" "<<n2<<" ";
-        
-        if(N >= 3){
-            long int n3 = n1*n1-n2;
-            cout<<n3<<" ";
-            solve(N-1,n2,n3);
+        long long gf[N];
+        gf[0]=0;
+        gf[1]=1;
+        for(int i=2;i<N;i++){
+            gf[i]=gf[i-2]*gf[i-2]-gf[i-1];
         }
+        for(int i=0;i<N;i++){
+            cout<<gf[i]<<" ";
+        }
+        cout<<endl;
     }
 };
 
