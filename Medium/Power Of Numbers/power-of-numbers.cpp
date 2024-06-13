@@ -5,24 +5,29 @@ using namespace std;
 // } Driver Code Ends
 
 class Solution{
-    public:
-    
-    int mod=1000000007;
-    long long power(int N,int R)
-    {
-      if(R==1) return N;
-      if(R==0) return 1;
-      
-      long long val=power(N,R/2)%mod;
-      val=(val*val)%mod;
-      
-      if(R&1) val=(val*N)%mod;
-      
-      return val;
-        
-    }
+public:
+    const long long MOD = 1000000007;
 
+    long long int fun(int a, int b){
+        if(a == 0) return 0;
+        if(b == 0) return 1;
+
+        long long int half = fun(a, b / 2);
+
+        long long int result = (half * half) % MOD;
+
+        if(b % 2 != 0) {
+            result = (result * a) % MOD;
+        }
+
+        return result;
+    }
+    
+    long long power(int N, int R) {
+        return fun(N, R);
+    }
 };
+
 
 //{ Driver Code Starts.
 
