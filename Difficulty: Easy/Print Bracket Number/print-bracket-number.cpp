@@ -10,15 +10,15 @@ class Solution {
 
     vector<int> bracketNumbers(string str) {
         // Your code goes here
-         int temp=1;
+         int t=1;
         int n=str.length();
         vector<int>ans;
         stack<int>st;
         for(int i=0;i<n;i++){
             if(str[i]=='('){
-                st.push(temp);
-                ans.push_back(temp);
-                temp++;
+                st.push(t);
+                ans.push_back(t);
+                t++;
             }
             else if(str[i]==')'){
                 ans.push_back(st.top());
