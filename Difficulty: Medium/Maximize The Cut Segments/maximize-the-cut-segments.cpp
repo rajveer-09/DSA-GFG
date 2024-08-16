@@ -13,7 +13,7 @@ class Solution
     if (n == 0)
         return 0;
     if (n < 0)
-        return INT_MIN; // Use INT_MIN to indicate an invalid cut
+        return INT_MIN; 
     if (ans[n] != -1)
         return ans[n];
     
@@ -25,16 +25,17 @@ class Solution
     if (b != INT_MIN) b += 1;
     if (c != INT_MIN) c += 1;
     
-    ans[n] = std::max({a, b, c});
+    ans[n] = max({a, b, c});
     return ans[n];
 }
 
 int maximizeTheCuts(int n, int x, int y, int z) {
     vector<int> ans(n + 1, -1);
     int result = check(n, x, y, z, ans);
-    return result < 0 ? 0 : result; // If result is negative, return 0
+    return result < 0 ? 0 : result; 
 }
 };
+
 
 //{ Driver Code Starts.
 int main() {
