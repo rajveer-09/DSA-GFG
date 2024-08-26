@@ -13,19 +13,28 @@ class Solution {
     // arr : given array
     // k : find kth smallest element and return using this function
     int kthSmallest(vector<int> &arr, int k) {
-        // code here
-        priority_queue<int>pq;
-        for(int i=0;i<arr.size();i++)
-        {
-            pq.push(arr[i]);
-            if(pq.size()>k)
-            {
-                pq.pop();
-            }
+        set<int> st;  // Declare a set to store unique elements in sorted order
+        
+        // Insert all elements into the set
+        for(int i = 0; i < arr.size(); i++) {
+            st.insert(arr[i]);
         }
-        return pq.top();
+        
+        // If the size of the set is less than k, k-th smallest element doesn't exist
+        if(st.size() < k) return -1;
+        
+        // Create an iterator to the beginning of the set
+        auto it = st.begin();
+        
+        // Advance the iterator to the (k-1)th position
+        advance(it, k-1);
+        
+        // Return the value at the k-th position
+        return *it;
     }
 };
+
+
 
 //{ Driver Code Starts.
 
