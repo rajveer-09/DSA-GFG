@@ -7,36 +7,31 @@ using namespace std;
 // } Driver Code Ends
 //User function template for C++
 
-class Solution{   
+class Solution {
 public:
-    bool fun(vector<int>& arr, int idx, int target, vector<vector<int>>& dp) {
-        // If the target is achieved
-        if (target == 0) return true;
-
-        // If no elements are left or target becomes negative
-        if (idx < 0 || target < 0) return false;
-
-        // Check if the result is already calculated
-        if (dp[idx][target] != -1) return dp[idx][target];
-
-        // Include the current element
-        bool inc = fun(arr, idx - 1, target - arr[idx], dp);
-
-        // Exclude the current element
-        bool exc = fun(arr, idx - 1, target, dp);
-
-        // Store and return the result
-        return dp[idx][target] = (inc || exc);
+    bool memo(vector<int>& arr, int idx, int sum, vector<vector<int>>& dp) {
+        // Base Case
+        if (sum == 0) return true;
+        if (idx >= arr.size() || sum < 0) return false;
+        
+        if (dp[sum][idx] != -1) return dp[sum][idx];
+        
+        bool inc = memo(arr, idx + 1, sum - arr[idx], dp);
+        bool exc = memo(arr, idx + 1, sum, dp);
+        
+        return dp[sum][idx] = (inc || exc);
     }
     
-    bool isSubsetSum(vector<int>arr, int target){
-        // code here 
+    bool isSubsetSum(vector<int> arr, int sum) {
+        // code here
         int n = arr.size();
-        vector<vector<int>> dp(n, vector<int>(target + 1, -1));
-
-        return fun(arr, n - 1, target, dp);
+        vector<vector<int>> dp(sum + 1, vector<int>(n, -1));
+        
+        return memo(arr, 0, sum, dp);
     }
 };
+
+
 
 //{ Driver Code Starts.
 int main() 
