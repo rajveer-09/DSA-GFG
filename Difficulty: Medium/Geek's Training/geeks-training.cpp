@@ -4,30 +4,35 @@ using namespace std;
 
 
 // } Driver Code Ends
-class Solution {
-  public:
-    int fun(vector<vector<int>>& matrix, int n, int idx, vector<vector<int>>& dp) {
-        if (n == 0) {
-            return 0;
-        }
-        if (dp[n][idx] != -1) return dp[n][idx];
 
+class Solution {
+public:
+    int memo(vector<vector<int>>& matrix, int idx, int prev, vector<vector<int>>& dp) {
+        if (idx >= matrix.size()) return 0;
+        
+        if (dp[idx][prev + 1] != -1) return dp[idx][prev + 1];
+        
         int ans = 0;
+        
         for (int i = 0; i < 3; i++) {
-            if (i != idx) {
-                ans = max(ans, matrix[n-1][i] + fun(matrix, n-1, i, dp));
+            if (i != prev) {
+                ans = max(ans, matrix[idx][i] + memo(matrix, idx + 1, i, dp));
             }
         }
-        return dp[n][idx] = ans;
+        
+        return dp[idx][prev + 1] = ans;
     }
-
-    int maximumPoints(vector<vector<int>>& matrix, int n) {
-        // Code here
-        vector<vector<int>> dp(n + 1, vector<int>(4, -1));
-
-        return fun(matrix, n, 3, dp); 
+      
+    int maximumPoints(vector<vector<int>>& arr, int n) {
+        vector<vector<int>> dp(n, vector<int>(4, -1));
+        
+        int ans = memo(arr, 0, -1, dp);
+        
+        return ans;
     }
 };
+
+
 
 //{ Driver Code Starts.
 int main() {
