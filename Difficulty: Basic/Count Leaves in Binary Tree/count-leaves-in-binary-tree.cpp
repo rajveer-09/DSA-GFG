@@ -97,40 +97,12 @@ int main()
 
 // } Driver Code Ends
 
-
-//User function Template for C++
-
-/* A binary tree node has data, pointer to left child
-   and a pointer to right child  
-struct Node
-{
-    int data;
-    Node* left;
-    Node* right;
-}; */
-
-/* Should return count of leaves. For example, return
-    value should be 2 for following tree.
-         10
-      /      \ 
-   20       30 */
-void count( Node* root, int &cnt){
-    if(root==nullptr) return;
-    
-    if (!root->right  && !root->left){
-        cnt++;
-        return;
-    } 
-    
-    count(root->right, cnt);
-    count(root->left, cnt);
-}
-int countLeaves(Node* root)
-{
+int countLeaves(Node* root){
   // Your code here
-  int cnt=0;
+  if(root == NULL) return 0;
   
-  count(root, cnt);
+  if (!root->right  && !root->left) return 1;
   
-  return cnt;
+  
+  return countLeaves(root->left) + countLeaves(root->right);
 }
