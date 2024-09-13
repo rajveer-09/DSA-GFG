@@ -96,39 +96,15 @@ void inorder(Node *root)
 
 
 // } Driver Code Ends
-/*
 
-Definition for Binary Tree Node
-struct Node
-{
-    int data;
-    struct Node* left;
-    struct Node* right;
-
-    Node(int x){
-        data = x;
-        left = right = NULL;
-    }
-};
-*/
 
 class Solution {
   public:
     int getSize(Node* root) {
-        // code here
-        vector<int> ans;
-        stack<Node*> s;
-        s.push(root);
-        while(!s.empty()){
-            Node* tmp= s.top();
-            s.pop();
-            
-            ans.push_back(tmp->data);
-            
-            if(tmp->right) s.push(tmp->right);
-            if(tmp->left) s.push(tmp->left);
-        }
-        return ans.size();
+        
+        if(root == NULL) return 0;
+        
+        return 1 + getSize(root->left) + getSize(root->right);
     }
 };
 
