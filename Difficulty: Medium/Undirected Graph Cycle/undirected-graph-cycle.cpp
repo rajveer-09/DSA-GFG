@@ -5,35 +5,45 @@ using namespace std;
 // } Driver Code Ends
 
 class Solution {
-public:
-    bool isCyclic(vector<int> adj[], int st, int pre, vector<int>& visited) {
-        visited[st] = true;
+private:
+    bool bfs(int i, vector<int> adj[], vector<bool>& visited) {
+        queue<pair<int, int>> q;
+        q.push({i, -1});
+        visited[i] = true;
 
-        for (auto it : adj[st]) {
-            if (!visited[it]) {
-                bool flg = isCyclic(adj, it, st, visited);
-                if (flg) return true;
-            }
-            else {
-                if (it != pre) return true;
+        while(!q.empty()) {
+            int node = q.front().first;
+            int parent = q.front().second;
+            q.pop();
+
+            for(auto it : adj[node]) {
+                if(!visited[it]) {
+                    visited[it] = true;
+                    q.push({it, node});
+                } 
+                else if(it != parent) {
+                    return true;
+                }
             }
         }
-
         return false;
     }
 
+public:
     bool isCycle(int V, vector<int> adj[]) {
-        vector<int> visited(V, false);
-        for (int i = 0; i < V; i++) {
-            if (!visited[i]) {
-                bool flg = isCyclic(adj, i, -1, visited);
-                if (flg) return true;
+        vector<bool> visited(V, false);
+        bool ans = false;
+
+        for(int i = 0; i < V; i++) {
+            if(!visited[i]) {
+                ans = bfs(i, adj, visited);
+                if(ans) break;
             }
         }
-
-        return false;
+        return ans;
     }
 };
+
 
 
 //{ Driver Code Starts.
