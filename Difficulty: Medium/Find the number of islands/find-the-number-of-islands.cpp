@@ -3,56 +3,65 @@
 using namespace std;
 
 // } Driver Code Ends
-
 class Solution {
-private:
-    void dfs(int i, int j, vector<vector<char>>& grid, vector<vector<bool>>& visited, int n, int m) {
-        // Directions for moving in 8 possible directions (horizontally, vertically, diagonally)
-        int dRow[] = {-1, -1, -1, 0, 1, 1, 1, 0};
-        int dCol[] = {-1, 0, 1, 1, 1, 0, -1, -1};
-        
-        // Mark this cell as visited
-        visited[i][j] = true;
-        
-        // Explore all 8 possible directions
-        for (int k = 0; k < 8; k++) {
-            int newRow = i + dRow[k];
-            int newCol = j + dCol[k];
-            
-            // Check if the new cell is within bounds, is land ('1'), and is not yet visited
-            if (newRow >= 0 && newRow < n && newCol >= 0 && newCol < m && 
-                grid[newRow][newCol] == '1' && !visited[newRow][newCol]) {
-                dfs(newRow, newCol, grid, visited, n, m);
-            }
-        }
-    }
-    
-public:
+  public:
+    // Function to find the number of islands.
     int numIslands(vector<vector<char>>& grid) {
+        // Code here
         int n = grid.size();
         int m = grid[0].size();
         
-        // Visited grid to track the cells we have already processed
         vector<vector<bool>> visited(n, vector<bool>(m, false));
         
-        int numIslands = 0;
+        int cnt = 0;
         
-        // Iterate through each cell in the grid
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                // If the cell is land ('1') and not visited, it's a new island
-                if (grid[i][j] == '1' && !visited[i][j]) {
-                    numIslands++;
-                    dfs(i, j, grid, visited, n, m);  // Perform DFS to mark the entire island
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                if(!visited[i][j] && grid[i][j] == '1'){
+                    cnt++;
+                    bfs(grid, i, j, visited);
                 }
             }
         }
         
-        return numIslands;
+        return cnt;
     }
+  private :
+      void bfs(vector<vector<char>>& grid, int i, int j, vector<vector<bool>>& visited){
+          int n = grid.size();
+          int m = grid[0].size();
+          
+          visited[i][j] = true;
+          
+          queue<pair<int, int>> q;
+          
+          q.push({i, j});
+          
+          while(!q.empty()){
+              auto front = q.front();
+              int x = front.first;
+              int y = front.second;
+              
+              q.pop();
+              
+              for(int i = -1; i <= 1; i++){
+                  for(int j = -1; j <= 1; j++){
+                      int row = x + i;
+                      int col = y + j;
+                      
+                      if(row < 0 || row >= n || col < 0 || col >= m) continue;
+                      
+                      if(!visited[row][col] && grid[row][col] == '1'){
+                          q.push({row, col});
+                          visited[row][col] = true;
+                      }
+                  }
+              }
+          }
+        
+      } 
+    
 };
-
-
 
 //{ Driver Code Starts.
 int main() {
