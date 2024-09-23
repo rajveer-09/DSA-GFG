@@ -3,59 +3,28 @@
 
 using namespace std;
 
+
 // } Driver Code Ends
-class Solution{
-public:
-    vector<int> findTwoElement(vector<int> arr, int n) {
+class Solution {
+  public:
+    vector<int> findTwoElement(vector<int>& arr) {
         // code here
-        int ans = 0;
+        unordered_map<int,int>mp;
+        int misNum=0;
+        int repeat=0;
+        for(int i=0;i<arr.size();i++)
+        mp[arr[i]]++;
         
-        for(int i = 0; i < n; i++){
-            ans^= arr[i]^(i+1);
-        }
-        
-        int tmp=0;
-        
-        int a=0,b=0;
-        
-        for(int i=0;i<31;i++){
-            if(1<<i & ans){
-                tmp=1<<i;
-                break;
+        for(int i=1;i<=arr.size();i++){
+            if(mp.find(i)!=mp.end()){
+                if(mp[i]==2)
+                repeat=i;
+                mp.erase(i);
             }
+            else
+            misNum=i;
         }
-        
-        int x = 1;
-        
-        for(int i=0;i<n;i++){
-            if(tmp&arr[i]){
-                a ^= arr[i];
-            }
-            else{
-                b ^= arr[i];
-            }
-            
-            if(x&tmp){
-                 a ^= x;
-                 x++;
-            }
-            else{
-                b ^= x;
-                x++;
-            }
-        }
-        
-        int cnt=0;
-        for(int i=0;i<n;i++){
-            if(arr[i]==a) cnt++;
-        }
-        
-        if(cnt==2){
-            return {a,b};
-        }
-        else return {b,a};
-        
-        return {};
+        return {repeat,misNum};
     }
 };
 
@@ -72,7 +41,7 @@ int main() {
             cin >> a[i];
         }
         Solution ob;
-        auto ans = ob.findTwoElement(a, n);
+        auto ans = ob.findTwoElement(a);
         cout << ans[0] << " " << ans[1] << "\n";
     }
     return 0;
