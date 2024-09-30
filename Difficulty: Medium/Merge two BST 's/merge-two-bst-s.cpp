@@ -96,31 +96,54 @@ class Solution {
   public:
     // Function to return a list of integers denoting the node
     // values of both the BST in a sorted order.
-void merge(Node *root, vector<int>&v)
-      {
-          if(root==NULL)
-          return;
-          merge(root->left,v);
-          v.push_back(root->data);
-          merge(root->right,v);
-      }
+    
+    void solve(Node* root,vector<int>& v)
+    {
+        if(!root)  return;
+        solve(root->left,v);
+        v.push_back(root->data);
+        solve(root->right,v);
+    }
     vector<int> merge(Node *root1, Node *root2) {
-        vector<int>v1,v2,count;
-        merge(root1,v1);
-        merge(root2,v2);
-        int i=0,j=0;
-        while(i<v1.size() && j<v2.size())
+        // Your code here
+        vector<int> l1;
+        vector<int> l2;
+        solve(root1,l1);
+        solve(root2,l2);
+        int n = l1.size();
+        int m = l2.size();
+        int l=0,r=0;
+        vector<int> ans;
+        while(l<n && r<m)
         {
-            if(v1[i]<=v2[j])
-            count.push_back(v1[i++]);
-            else
-            count.push_back(v2[j++]);
+            if(l1[l] < l2[r])
+            {
+                ans.push_back(l1[l]);
+                l++;
+            }
+            else if(l2[r]<l1[l])
+            {
+                ans.push_back(l2[r]);
+                r++;
+            }
+            else{
+                ans.push_back(l1[l]);
+                ans.push_back(l2[r]);
+                l++;
+                r++;
+            }
         }
-        while(i<v1.size())
-        count.push_back(v1[i++]);
-        while(j<v2.size())
-        count.push_back(v2[j++]);
-      return count;
+        while(l<n)
+        {
+            ans.push_back(l1[l]);
+            l++;
+        }
+         while(r<m)
+        {
+            ans.push_back(l2[r]);
+            r++;
+        }
+        return ans;
     }
 };
 
