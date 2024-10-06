@@ -6,61 +6,35 @@ using namespace std;
 class Solution {
   public:
     // Function to find the number of islands.
+    void solve(int i,int j, vector<vector<int>>&visited, vector<vector<char>>&grid, int n, int m){
+        visited[i][j]=1;
+        int dx[]={-1,-1,-1,0,0,1,1,1};
+        int dy[]={-1,0,1,-1,1,-1,0,1};
+        for(int k=0;k<8;k++){
+            int nx=i+dx[k];
+            int ny=j+dy[k];
+            if(nx>=0 && ny>=0 && nx<n && ny<m && grid[nx][ny]=='1' && visited[nx][ny]==0){
+                solve(nx,ny,visited,grid,n,m);
+            }
+        }
+    }
+    // Function to find the number of islands.
     int numIslands(vector<vector<char>>& grid) {
         // Code here
-        int n = grid.size();
-        int m = grid[0].size();
-        
-        vector<vector<bool>> visited(n, vector<bool>(m, false));
-        
-        int cnt = 0;
-        
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
-                if(!visited[i][j] && grid[i][j] == '1'){
-                    cnt++;
-                    bfs(grid, i, j, visited);
+        int n=grid.size();
+        int m=grid[0].size();
+        vector<vector<int>>visited(n,vector<int>(m,0));
+        int count=0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]=='1' && visited[i][j]==0){
+                    count++;
+                    solve(i,j,visited,grid,n,m);
                 }
             }
         }
-        
-        return cnt;
+        return count;
     }
-  private :
-      void bfs(vector<vector<char>>& grid, int i, int j, vector<vector<bool>>& visited){
-          int n = grid.size();
-          int m = grid[0].size();
-          
-          visited[i][j] = true;
-          
-          queue<pair<int, int>> q;
-          
-          q.push({i, j});
-          
-          while(!q.empty()){
-              auto front = q.front();
-              int x = front.first;
-              int y = front.second;
-              
-              q.pop();
-              
-              for(int i = -1; i <= 1; i++){
-                  for(int j = -1; j <= 1; j++){
-                      int row = x + i;
-                      int col = y + j;
-                      
-                      if(row < 0 || row >= n || col < 0 || col >= m) continue;
-                      
-                      if(!visited[row][col] && grid[row][col] == '1'){
-                          q.push({row, col});
-                          visited[row][col] = true;
-                      }
-                  }
-              }
-          }
-        
-      } 
-    
 };
 
 //{ Driver Code Starts.
