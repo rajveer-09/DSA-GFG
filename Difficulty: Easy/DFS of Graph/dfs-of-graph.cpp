@@ -3,35 +3,35 @@
 using namespace std;
 
 // } Driver Code Ends
-
 class Solution {
   public:
-    void dfs(int node, vector<int> adj[] , bool vis[], vector<int>& ans){
-        
-        vis[node] = true;
-        
+    // Function to return a list containing the DFS traversal of the graph.
+    void dfs(int V, int node, vector<int> adj[], vector<bool>& visited, vector<int>& ans){
+        visited[node] = true;
         ans.push_back(node);
         
-        for(auto it : adj[node]){
-            if(!vis[it]){
-                dfs(it, adj, vis, ans);
+        for(int it : adj[node]){
+            if(!visited[it]){
+                dfs(V, it, adj, visited, ans);
             }
         }
+        
     }
-    // Function to return a list containing the DFS traversal of the graph.
-    vector<int> dfsOfGraph(int v, vector<int> adj[]) {
+    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
         // Code here
-        bool vis[v] = {false};
         
         vector<int> ans;
+        vector<bool> visited(V, false);
         
-        dfs(0, adj, vis, ans);
+        for(int i = 0; i < V; i++){
+            if(!visited[i]){
+                dfs(V, i, adj, visited, ans);
+            }
+        }
         
         return ans;
-        
     }
 };
-
 
 //{ Driver Code Starts.
 int main() {
