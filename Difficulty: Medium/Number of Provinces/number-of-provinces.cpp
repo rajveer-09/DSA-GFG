@@ -8,38 +8,40 @@ using namespace std;
 
 class Solution {
   public:
-    void dfs(vector<int> adj[], int st, vector<bool>& visited){
-        visited[st] = true;
+    void dfs(int node, vector<int> adj[], vector<bool>& visited){
+        visited[node] = true;
 
-        for(int it : adj[st]){
+        for(int it : adj[node]){
             if(!visited[it]){
-                dfs(adj, it, visited);
+                dfs(it, adj, visited);
             }
         }
-        return;
     }
-    int numProvinces(vector<vector<int>> Adj, int V) {
+    int numProvinces(vector<vector<int>> isConnected, int V) {
         // code here
-        vector<int> adj[V];
-        
-        for(int i = 0; i < V; i++){
-            for(int j = 0; j < V; j++){
-                if(Adj[i][j] == 1){
+        int n = isConnected.size();
+        vector<int> adj[n];
+
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                if(isConnected[i][j] == 1){
                     adj[i].push_back(j);
                     adj[j].push_back(i);
                 }
             }
         }
-        vector<bool> visited(V, false);
 
         int cnt = 0;
-    
-        for(int i = 0; i < V; i++){
+
+        vector<bool> visited(n);
+
+        for(int i = 0; i < n; i++){
             if(!visited[i]){
                 cnt++;
-                dfs(adj, i, visited);
+                dfs(i, adj, visited);
             }
         }
+
         return cnt;
     }
 };
