@@ -1,0 +1,11 @@
+<h2><a href="https://www.geeksforgeeks.org/problems/average-count-array2215/1?page=14&category=Mathematical&sortBy=submissions">Average Count Array</a></h2><h3>Difficulty Level : Difficulty: Basic</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given an array <strong>arr[]</strong> and an integer <strong>x</strong>. You have to calculate the average for each element <strong>arr[i]</strong> and <strong>x</strong> and find out whether that number exists in the array. Do it for all the elements of the array and store the count result in another array for each index how many occurrences of average are present in the array.</span></p>
+<p><span style="font-size: 18px;"><strong>Note:</strong> Always take the floor value of the average.</span></p>
+<p><span style="font-size: 18px;"><strong>Examples:</strong></span></p>
+<pre><span style="font-size: 18px;"><strong>Input :</strong> arr[] = [2, 4, 8, 6, 2] and x = 2
+<strong>Output :</strong> [2, 0, 0, 1, 2]
+<strong>Explanation:</strong> We take x = 2 and take average with arr[0] whch is equal to 2. We found 2 resides in array at two positions (1st and 5th element) thus storing 2 in another array at 0th index. Similarly do for all elements and store the count in second array.
+</span></pre>
+<pre><span style="font-size: 18px;"><strong>Input :</strong> arr[] = [9, 5, 2, 4, 0, 3] and x = 3 <strong>
+Output :</strong> [0, 1, 1, 1, 0, 1] <br><strong>Explanation: </strong>The average of 9 and 3 is 6 and no occurence of 6 is present in array so 0. And so on. <br></span></pre>
+<p><span style="font-size: 18px;"><strong>Expected Time Complexity:</strong> O(n).<br><strong>Expected Auxiliary Space:</strong> O(n).</span></p>
+<p><span style="font-size: 18px;"><strong>Constraints:</strong></span><br><span style="font-size: 18px;">1 ≤ arr.size() ≤ 10<sup>6</sup></span><br><span style="font-size: 18px;">1 ≤ x ≤ 10<sup>5</sup></span><br><span style="font-size: 18px;">1 ≤ arr[i] ≤ 10<sup>5</sup></span></p></div><br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Arrays</code>&nbsp;<code>Mathematical</code>&nbsp;<code>logical-thinking</code>&nbsp;<code>Data Structures</code>&nbsp;<code>Algorithms</code>&nbsp;
