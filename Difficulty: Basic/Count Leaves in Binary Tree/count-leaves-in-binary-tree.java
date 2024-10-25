@@ -127,6 +127,9 @@ class Tree {
         if (node.left == null && node.right == null) {
             return 1;
         }
-        return countLeaves(node.left) + countLeaves(node.right);
+        int leftLeaves = countLeaves(node.left);
+        int rightLeaves = countLeaves(node.right);
+        
+        return leftLeaves + rightLeaves;
     }
 }
