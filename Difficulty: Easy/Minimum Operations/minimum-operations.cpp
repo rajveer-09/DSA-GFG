@@ -3,34 +3,28 @@
 using namespace std;
 
 // } Driver Code Ends
-
-class Solution {
-public:
-    int minOperation(int n) {
-        vector<int> dp(n + 1, INT_MAX);
-        dp[0] = 0;
-        queue<int> q;
-        q.push(0);
+class Solution
+{
+  public:
+    int minOperation(int n)
+    {
+        //code here.
+        int cnt = 0;
         
-        while (!q.empty()) {
-            int curr = q.front();
-            q.pop();
-            
-            if (curr + 1 <= n && dp[curr + 1] > dp[curr] + 1) {
-                dp[curr + 1] = dp[curr] + 1;
-                q.push(curr + 1);
-            }
-            
-            if (curr * 2 <= n && dp[curr * 2] > dp[curr] + 1) {
-                dp[curr * 2] = dp[curr] + 1;
-                q.push(curr * 2);
-            }
+        while(n){
+           if(n % 2 == 0){
+               n /= 2;
+               cnt++;
+           }
+           else{
+               n -= 1;
+               cnt++;
+           }
         }
         
-        return dp[n];
+        return cnt;
     }
 };
-
 
 //{ Driver Code Starts.
 int main()
