@@ -10,40 +10,41 @@ using namespace std;
 
 class Solution {
 public:
-    bool canPlaceCows(vector<int>& stalls, int k, int distance) {
-        int count = 1;
-        int lastPosition = stalls[0];
-
-        for (int i = 1; i < stalls.size(); i++) {
-            if (stalls[i] - lastPosition >= distance) {
-                count++;
-                lastPosition = stalls[i];
-                if (count == k) {
-                    return true;
-                }
+    int check(int& dis, vector<int>& nums, int& k){
+        int cnt = 1;
+        int st = nums[0];
+        for(int  i = 1; i < nums.size(); i++){
+            if(nums[i] - st >= dis){
+                st = nums[i];
+                cnt++;
             }
+            if(cnt >= k) break;
         }
 
-        return false;
+        return cnt >= k;
     }
+    int aggressiveCows(vector<int> &nums, int k) {
+        sort(nums.begin(), nums.end());
+        int n = nums.size();
 
-    int aggressiveCows(vector<int>& stalls, int k) {
-        sort(stalls.begin(), stalls.end());
-        int low = 1;
-        int high = stalls.back() - stalls.front();
-        int result = 0;
+        int high = nums[n - 1] - nums[0];
+        int low  = 0;
 
-        while (low <= high) {
+        int ans = INT_MIN;
+
+        while(low <= high){
             int mid = low + (high - low) / 2;
-            if (canPlaceCows(stalls, k, mid)) {
-                result = mid;
+            if(check(mid, nums, k)){
+                ans = mid;
                 low = mid + 1;
-            } else {
+            }
+            else{
                 high = mid - 1;
             }
+
         }
 
-        return result;
+        return ans;
     }
 };
 
