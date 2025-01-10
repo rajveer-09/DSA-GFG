@@ -7,30 +7,25 @@ using namespace std;
 // } Driver Code Ends
 
 class Solution {
-public:
+  public:
     vector<int> countDistinct(vector<int> &arr, int k) {
-        unordered_map<int, int> mp;
-        int st = 0;
-        vector<int> ans;
-
-        for (int ed = 0; ed < arr.size(); ed++) {
-            mp[arr[ed]]++;
-
-            if (ed - st + 1 == k) {
-                ans.push_back(mp.size());
-
-                mp[arr[st]]--;
-                if (mp[arr[st]] == 0) {
-                    mp.erase(arr[st]);
-                }
-                st++;
+        // code here.
+        vector<int > ans;
+        unordered_map<int,int> m;
+        int n = arr.size() , j = 0;
+        
+        for(int i =0;i<n;i++){
+            m[arr[i]]++;
+            if(i-j+1==k) {
+                ans.push_back(m.size());
+                m[arr[j]]--;
+                if(m[arr[j]]==0) m.erase(arr[j]);
+                j++;
             }
         }
-
         return ans;
     }
 };
-
 
 //{ Driver Code Starts.
 
@@ -40,10 +35,6 @@ int main() {
     cin >> t;
     cin.ignore();
     while (t--) {
-
-        string ks;
-        getline(cin, ks);
-        int k = stoi(ks);
         vector<int> arr;
         string input;
         getline(cin, input);
@@ -52,6 +43,9 @@ int main() {
         while (ss >> number) {
             arr.push_back(number);
         }
+        string ks;
+        getline(cin, ks);
+        int k = stoi(ks);
         Solution obj;
         vector<int> res = obj.countDistinct(arr, k);
         for (auto it : res)
