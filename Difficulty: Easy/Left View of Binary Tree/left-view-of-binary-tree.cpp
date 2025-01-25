@@ -3,18 +3,63 @@
 using namespace std;
 
 // Tree Node
-struct Node
-{
+struct Node {
     int data;
     Node* left;
     Node* right;
 };
 
-vector<int> leftView(struct Node *root);
+
+// } Driver Code Ends
+/* A binary tree node
+
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+
+    Node(int x){
+        data = x;
+        left = right = NULL;
+    }
+};
+ */
+
+class Solution {
+  public:
+    vector<int> leftView(Node *root) {
+        // code here
+        if (root == NULL) return {};
+
+        vector<int> ans;
+        queue<Node*> q;
+        q.push(root);
+
+        while (!q.empty()) {
+            int n = q.size();
+
+            for (int i = 0; i < n; i++) {
+                Node* node = q.front();
+                q.pop();
+
+                if (i == 0) {
+                    ans.push_back(node->data);
+                }
+
+                if (node->left) q.push(node->left);
+                if (node->right) q.push(node->right);
+            }
+        }
+
+        return ans;
+    }
+};
+
+//{ Driver Code Starts.
 
 // Utility function to create a new Tree Node
-Node* newNode(int val)
-{
+Node* newNode(int val) {
     Node* temp = new Node;
     temp->data = val;
     temp->left = NULL;
@@ -23,12 +68,10 @@ Node* newNode(int val)
     return temp;
 }
 
-
 // Function to Build Tree
-Node* buildTree(string str)
-{
+Node* buildTree(string str) {
     // Corner Case
-    if(str.length() == 0 || str[0] == 'N')
+    if (str.length() == 0 || str[0] == 'N')
         return NULL;
 
     // Creating vector of strings from input
@@ -36,7 +79,7 @@ Node* buildTree(string str)
     vector<string> ip;
 
     istringstream iss(str);
-    for(string str; iss >> str; )
+    for (string str; iss >> str;)
         ip.push_back(str);
 
     // for(string i:ip)
@@ -51,7 +94,7 @@ Node* buildTree(string str)
 
     // Starting from the second element
     int i = 1;
-    while(!queue.empty() && i < ip.size()) {
+    while (!queue.empty() && i < ip.size()) {
 
         // Get and remove the front of the queue
         Node* currNode = queue.front();
@@ -61,7 +104,7 @@ Node* buildTree(string str)
         string currVal = ip[i];
 
         // If the left child is not null
-        if(currVal != "N") {
+        if (currVal != "N") {
 
             // Create the left child for the current node
             currNode->left = newNode(stoi(currVal));
@@ -72,12 +115,12 @@ Node* buildTree(string str)
 
         // For the right child
         i++;
-        if(i >= ip.size())
+        if (i >= ip.size())
             break;
         currVal = ip[i];
 
         // If the right child is not null
-        if(currVal != "N") {
+        if (currVal != "N") {
 
             // Create the right child for the current node
             currNode->right = newNode(stoi(currVal));
@@ -91,63 +134,26 @@ Node* buildTree(string str)
     return root;
 }
 
-
 int main() {
     int t;
-    scanf("%d ",&t);
-    while(t--)
-    {
+    scanf("%d ", &t);
+    while (t--) {
         string s;
-        getline(cin,s);
+        getline(cin, s);
         Node* root = buildTree(s);
-        vector<int> vec = leftView(root);
-        for(int x : vec)
-        cout<<x<<" ";
+        Solution ob;
+        vector<int> vec = ob.leftView(root);
+        if (vec.size() == 0) {
+            cout << "[]";
+        }
+        for (int x : vec)
+            cout << x << " ";
         cout << endl;
+
+        cout << "~"
+             << "\n";
     }
     return 0;
 }
 
-
 // } Driver Code Ends
-
-
-/* A binary tree node
-
-struct Node
-{
-    int data;
-    struct Node* left;
-    struct Node* right;
-    
-    Node(int x){
-        data = x;
-        left = right = NULL;
-    }
-};
- */
-
-//Function to return a list containing elements of left view of the binary tree.
-vector<int> leftView(Node *root)
-{
-   // Your code here
-   vector<int>ans;
-   queue<pair<Node*,int>>q;
-   int level=0;
-   q.push({root,0});
-
-while(!q.empty()){
-       Node* node=q.front().first;
-       int lev=q.front().second;
-       q.pop();
-       if(level==lev){
-           ans.push_back(node->data);
-           level++;
-       }
-
-if(node->left) q.push({node->left,lev+1});
-       if(node->right) q.push({node->right,lev+1});
-       
-   }
-   return ans;
-}
