@@ -1,42 +1,34 @@
-//{ Driver Code Starts
-#include <bits/stdc++.h>
-using namespace std;
-
-
-// } Driver Code Ends
 class Solution {
   public:
-    int longestCommonSubstr(string str1, string str2) {
-        // your code here
-        int n=str1.length(), m=str2.length();
-        vector<int>prev(m+1, 0), curr(m+1, 0);
+    int longestCommonSubstr(string& s1, string& s2) {
+        int n1= s1.size(), n2 = s2.size();
         
-        int maxi=0;
+        vector<vector<int>> dp(n1, vector<int>(n2, 0));
         
-        for(int i=1; i<=n; i++){
-            for(int j=1; j<=m; j++){
-                if(str1[i-1]==str2[j-1]){
-                    curr[j]=1+prev[j-1];
-                    maxi=max(maxi, curr[j]);
-                }else curr[j]=0;
-            }
-            prev=curr;
+        // dp[i][j] -> longest common substring start from i, j and before.
+        
+        int maxi = 0;
+        
+        for(int i = 0; i < n1; i++) {
+            dp[i][0] = (s1[i] == s2[0]) ? 1 : 0;
+            maxi = max(maxi, dp[i][0]);
         }
+        for(int j = 0; j < n2; j++) {
+            dp[0][j] = (s1[0] == s2[j]) ? 1 : 0;
+            maxi = max(maxi, dp[0][j]);
+        }
+        
+        for(int i = 1; i < n1; i++){
+            for(int j = 1; j < n2; j++){
+                if(s1[i] == s2[j]){
+                    dp[i][j] = 1 + dp[i - 1][j - 1];
+                    
+                    maxi = max(maxi, dp[i][j]);
+                }
+            }
+        }
+        
         return maxi;
+        
     }
 };
-
-//{ Driver Code Starts.
-
-int main() {
-    int t;
-    cin >> t;
-    while (t--) {
-        string s1, s2;
-        cin >> s1 >> s2;
-        Solution ob;
-
-        cout << ob.longestCommonSubstr(s1, s2) << endl;
-    }
-}
-// } Driver Code Ends
