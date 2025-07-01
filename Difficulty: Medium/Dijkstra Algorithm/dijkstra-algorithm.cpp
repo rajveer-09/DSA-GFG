@@ -1,74 +1,43 @@
-//{ Driver Code Starts
-#include <bits/stdc++.h>
-using namespace std;
-
-
-// } Driver Code Ends
-// User Function Template
 class Solution {
   public:
-    // Function to find the shortest distance of all the vertices
-    // from the source vertex src.
-    vector<int> dijkstra(vector<vector<pair<int, int>>> &adj, int src) {
-        // Code here
-        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
-        int V=adj.size();
-        vector<int> dist(V,1e9);
-        dist[src]=0;
-        pq.push({0,src});
-        
-        while (!pq.empty()){
-            int dis=pq.top().first;
-            int node=pq.top().second;
-            pq.pop();
-            
-            for (auto it: adj[node]){
-                int adjNode=it.first;
-                int edgeWeight=it.second;
-                
-                if (dis+edgeWeight <dist[adjNode]){
-                    dist[adjNode]=dis+edgeWeight ;
-                    pq.push({dist[adjNode],adjNode});
+    vector<int> dijkstra(int V, vector<vector<int>> &edges, int src) {
+        vector<vector<pair<int, int>>> adj(V);
+
+        for (auto &e : edges) {
+            int u = e[0], v = e[1], wt = e[2];
+            adj[u].push_back({v, wt});
+            adj[v].push_back({u, wt});
+        }
+
+
+        vector<long long> dist(V, LLONG_MAX);
+        dist[src] = 0;
+
+        queue<int> q;
+        q.push(src);
+
+        while (!q.empty()) {
+            int u = q.front(); q.pop();
+
+            for (auto &it : adj[u]) {
+                int v = it.first;
+                int wt = it.second;
+                if (dist[u] + wt < dist[v]) {
+                    dist[v] = dist[u] + wt;
+                    q.push(v);
                 }
             }
+
         }
-        return dist;
+
+        vector<int> ans(V);
+        for (int i = 0; i < V; ++i) {
+            if (dist[i] == LLONG_MAX)
+                ans[i] = 1e9;
+            else
+                ans[i] = static_cast<int>(dist[i]);
+        }
+
+        return ans;
     }
 };
-
-
-//{ Driver Code Starts.
-
-int main() {
-    int t;
-    cin >> t;
-    while (t--) {
-        int V, E;
-        cin >> V >> E;
-        vector<vector<pair<int, int>>> adj(V);
-        int i = 0;
-        while (i++ < E) {
-            int u, v, w;
-            cin >> u >> v >> w;
-            pair<int, int> t1 = {v, w}, t2 = {u, w};
-            adj[u].push_back(t1);
-            adj[v].push_back(t2);
-        }
-        int src;
-        cin >> src;
-        cin.ignore();
-
-        Solution obj;
-        vector<int> res = obj.dijkstra(adj, src);
-
-        for (int i = 0; i < V; i++)
-            cout << res[i] << " ";
-        cout << endl;
-
-        cout << "~"
-             << "\n";
-    }
-
-    return 0;
-}
-// } Driver Code Ends
