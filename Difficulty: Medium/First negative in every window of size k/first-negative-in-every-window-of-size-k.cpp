@@ -1,28 +1,22 @@
-//{ Driver Code Starts
-#include <bits/stdc++.h>
-using namespace std;
-
-
-// } Driver Code Ends
-
-
 class Solution {
   public:
-    vector<int> FirstNegativeInteger(vector<int>& arr, int k) {
+    vector<int> firstNegInt(vector<int>& arr, int k) {
         // write code here
-        vector<int> ans;
-        priority_queue<int, vector<int>, greater<int>> q;
-        
+        deque<int> dq;
         int st = 0;
+        vector<int> ans;
         
-        for(int ed = 0; ed < arr.size(); ed++){
-            if(arr[ed] < 0) q.push(ed);
-            
-            if((ed - st + 1) == k){
-                if(!q.empty()){
-                    int t = q.top();
-                    if(t == st) q.pop();
-                    ans.push_back(arr[t]);
+        for(int i = 0; i < arr.size(); i++){
+            if(arr[i] < 0){
+                dq.push_back(arr[i]);
+            }
+            if(i - st + 1 == k){
+                if(!dq.empty()){
+                    ans.push_back(dq.front());
+                    
+                    if(arr[st] < 0){
+                        dq.pop_front();
+                    }
                 }
                 else{
                     ans.push_back(0);
@@ -34,33 +28,3 @@ class Solution {
         return ans;
     }
 };
-
-//{ Driver Code Starts.
-int main() {
-    string ts;
-    getline(cin, ts);
-    int t = stoi(ts);
-    while (t--) {
-
-        vector<int> arr;
-        string input;
-        getline(cin, input);
-        stringstream ss(input);
-        int number;
-        while (ss >> number) {
-            arr.push_back(number);
-        }
-        string ks;
-        getline(cin, ks);
-        int k = stoi(ks);
-        Solution ob;
-        vector<int> ans = ob.FirstNegativeInteger(arr, k);
-        for (auto it : ans) {
-            cout << it << " ";
-        }
-        cout << endl;
-        cout << "~" << endl;
-    }
-    return 0;
-}
-// } Driver Code Ends
