@@ -1,30 +1,42 @@
-// Node Structure
 /*
-struct Node
-{
+class Node {
+public:
     int data;
     Node* left;
     Node* right;
+    Node(int val) {
+        data = val;
+        left = nullptr;
+        right = nullptr;
+    }
 };
 */
-
 class Solution {
   public:
-    pair<int, int> dfs(Node* root) {
-        if(!root) return {0, 0}; // {include, exclude}
+    unordered_map<Node*, int> dp;
+    
+    int solve(Node* root) {
+        if (!root) return 0;
+
+        if (dp.count(root)) return dp[root];
+
+        int take = root->data;
         
-        auto left = dfs(root->left);
-        auto right = dfs(root->right);
-        
-        int include = root->data + left.second + right.second;
-        int exclude = max(left.first, left.second) + max(right.first, right.second);
-        
-        return {include, exclude};
+        if (root->left) {
+            take += solve(root->left->left);
+            take += solve(root->left->right);
+        }
+        if (root->right) {
+            take += solve(root->right->left);
+            take += solve(root->right->right);
+        }
+
+        int notTake = solve(root->left) + solve(root->right);
+
+        return dp[root] = max(take, notTake);
     }
 
     int getMaxSum(Node* root) {
-        auto ans = dfs(root);
-        return max(ans.first, ans.second);
+        return solve(root);
     }
 };
-
